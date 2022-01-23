@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src = "https://unpkg.com/vue"></script>
+</head>
+<body>
+    <div id="lessons">
+        <div  v-for = "prod in product" >
+            <p>{{prod}}</p>
+        </div>
+        <p>This is users</p>
+        <div  v-for = "user in users" >
+            <p>{{user}}</p>
+        </div>
+    </div>
+    <script>
+        let store = new Vue({
+            el: '#lessons',
+            data: {
+                product: [],
+                users: []
+            },
+            created: function(){
+                console.log('requesting data from server....')
+
+                fetch('http://localhost:3000/lessons').then(
+                    function(response){
+                        response.json().then(
+                            function(json){
+                                store.product = json;
+                                console.log(json);
+                            });
+                    }
+                )
+
+                fetch('http://localhost:3000/user').then(
+                    function(response){
+                        response.json().then(
+                            function(json){
+                                store.users = json;
+                                console.log(json);
+                            });
+                    }
+                )
+            }
+        });
+    </script>
+</body>
+</html>
