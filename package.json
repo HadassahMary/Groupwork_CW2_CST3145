@@ -1,0 +1,7 @@
+{
+    "name": "group-work",
+    "author": "Hadassah",
+    "dependencies": {
+        "express": "^4.17.1"
+    }
+}

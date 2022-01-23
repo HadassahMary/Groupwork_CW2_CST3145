@@ -4,25 +4,38 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>SchoolClub Activities</title>
     <script src = "https://unpkg.com/vue"></script>
+    <style>
+        .lesson_card{
+            padding:5px; 
+            margin-left: 50px; 
+            border-style: solid; 
+            border-color: lightblue;  
+            height: 80px; 
+            width: 200px; 
+            display: inline-block;
+        }
+    </style>
 </head>
 <body>
-    <div id="lessons">
-        <div  v-for = "prod in product" >
-            <p>{{prod}}</p>
-        </div>
-        <p>This is users</p>
-        <div  v-for = "user in users" >
-            <p>{{user}}</p>
+    <div id="app">
+        <p>List of Lessons:</p>
+        <div  v-for = "lesson in lessons" style="display: inline-block;" >
+            <div class="lesson_card" >
+                <ul >
+                    <li>Topic: {{lesson.topic}}</li>
+                    <li>Location: {{lesson.location}}</li>
+                    <li>Price: {{lesson.price}}</li>
+                </ul>
+            </div>
         </div>
     </div>
     <script>
-        let store = new Vue({
-            el: '#lessons',
+        let schoolClub = new Vue({
+            el: '#app',
             data: {
-                product: [],
-                users: []
+                lessons: [],
             },
             created: function(){
                 console.log('requesting data from server....')
@@ -31,17 +44,7 @@
                     function(response){
                         response.json().then(
                             function(json){
-                                store.product = json;
-                                console.log(json);
-                            });
-                    }
-                )
-
-                fetch('http://localhost:3000/user').then(
-                    function(response){
-                        response.json().then(
-                            function(json){
-                                store.users = json;
+                                schoolClub.lessons = json;
                                 console.log(json);
                             });
                     }

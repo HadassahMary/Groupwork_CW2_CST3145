@@ -17,13 +17,13 @@ const users = [
 ];
 app.get("/lessons", function(req, res){
     
-    res.setHeader('Access-Control-Allow-Origin', '*');//the chrome will not allow get/post/put. all access control should be allowed
+    res.setHeader('Access-Control-Allow-Origin', '*');
     res.writeHead(200, {'Content-Type' : 'text/plain'});
     res.end(JSON.stringify(courses));
 });
 app.get("/user", function(req, res){
     
-    res.setHeader('Access-Control-Allow-Origin', '*');//the chrome will not allow get/post/put. all access control should be allowed
+    res.setHeader('Access-Control-Allow-Origin', '*');
     res.writeHead(200, {'Content-Type' : 'text/plain'});
     res.end(JSON.stringify(users));
 });
